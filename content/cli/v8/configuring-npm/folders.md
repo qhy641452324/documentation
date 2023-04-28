@@ -2,14 +2,13 @@
 title: folders
 section: 5
 description: Folder Structures Used by npm
-redirect_from:
-  - /configuring-npm/folders
-  - /configuring-npm/folders.html
-  - /files/folders
-  - /files/folders.html
 github_repo: npm/cli
-github_branch: latest
-github_path: docs/content/configuring-npm/folders.md
+github_branch: release/v8
+github_path: docs/lib/content/configuring-npm/folders.md
+redirect_from:
+  - /cli-documentation/v8/configuring-npm/folders
+  - /cli-documentation/v8/files/folders
+  - /cli/v8/files/folders
 ---
 
 ### Description
@@ -210,7 +209,7 @@ For a graphical breakdown of what is installed where, use `npm ls`.
 #### Publishing
 
 Upon publishing, npm will look in the `node_modules` folder.  If any of
-the items there are not in the `bundledDependencies` array, then they will
+the items there are not in the `bundleDependencies` array, then they will
 not be included in the package tarball.
 
 This allows a package maintainer to install all of their dependencies

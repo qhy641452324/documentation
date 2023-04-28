@@ -3,8 +3,20 @@ title: npm-ls
 section: 1
 description: List installed packages
 github_repo: npm/cli
-github_branch: v7
+github_branch: release/v7
 github_path: docs/content/commands/npm-ls.md
+redirect_from:
+  - /cli-documentation/v7/cli-commands/ls
+  - /cli-documentation/v7/cli-commands/npm-ls
+  - /cli-documentation/v7/commands/ls
+  - /cli-documentation/v7/commands/npm-ls
+  - /cli-documentation/v7/ls
+  - /cli-documentation/v7/npm-ls
+  - /cli/v7/cli-commands/ls
+  - /cli/v7/cli-commands/npm-ls
+  - /cli/v7/commands/ls
+  - /cli/v7/ls
+  - /cli/v7/npm-ls
 ---
 
 ### Synopsis
@@ -30,7 +42,7 @@ packages will *also* show the paths to the specified packages.  For
 example, running `npm ls promzard` in npm's source tree will show:
 
 ```bash
-npm@7.0.0 /path/to/npm
+npm@7.24.2 /path/to/npm
 └─┬ init-package-json@0.0.4
   └── promzard@0.1.5
 ```

@@ -16,25 +16,24 @@ contribute a change?  Great!
 
 ## Quick start
 
-1. `npm install` to download gatsby, our theme, and the dependencies
+1. `npm install` to download Gatsby, our theme, and the dependencies
 2. `npm run develop`: starts the test server at `http://localhost:8000`.
-3. Update the content - it's Mdx, which is like markdown - in the `content`
+3. Update the content - it's MDX, which is like Markdown - in the `content`
    directory.
 4. Review your content at `http://localhost:8000`.  (Gatsby watches the
    filesystem and will reload your content changes immediately.)
 5. Once you're happy, commit it and open a pull request at
    https://github.com/npm/documentation.
-6. A CI workflow run will publish your PR to the staging documentation
-   site at https://docs-staging.npmjs.com/.
-8. Once the content is reviewed, merge the pull request.  That will
+6. A CI workflow run will publish your PR to a GitHub Preview Page.
+7. Once the content is reviewed, merge the pull request.  That will
    [deploy the site](https://github.com/npm/documentation/actions/workflows/publish.yml).
 
 ## Running locally
 
-First, `npm install` the dependencies.  This will install gatsby, et al.
+First, `npm install` the dependencies.  This will install Gatsby, et al.
 
 Next, `npm run develop` to start the test server to view your changes.
-The gatsby server will be started on port 8000.  You can navigate to
+The Gatsby server will be started on port 8000.  You can navigate to
 `http://localhost:8000` to view the site live.
 
 **For best results use npm 8**
@@ -47,8 +46,8 @@ changes you make should be reflected in the site immediately.
 ### Documentation content
 
 The documentation content lives in the `content` directory, and is
-markdown.  (Actually, [Mdx](https://mdxjs.com/), a sort of reactive
-markdown.)
+Markdown.  (Actually, [MDX](https://mdxjs.com/), a sort of reactive
+Markdown.)
 
 ### Static content (images)
 
@@ -56,7 +55,7 @@ Static content lives in the `static` directory.  Since most of the
 static content is screenshots, you can use the `Screenshot` component
 to reference them, which is an extension of the `Img` component that
 is configured for the docs site.  For example, an image living as
-`static/organizations/managing-temas/team-members.png` would be
+`static/organizations/managing-teams/team-members.png` would be
 referenced as:
 
 ```
@@ -70,7 +69,7 @@ referenced as:
 There are various places where we want to share content between
 pages, to prevent copy-pasta.  For example, we display a screenshot
 of the user login dialog repeatedly.  Therefore this shared content
-is defined in `src/shared.js`, and includes a literal Mdx snippet.
+is defined in `src/shared.js`, and includes a literal MDX snippet.
 
 For example, `user-login` is defined with `text` and `image`
 properties:
@@ -84,7 +83,7 @@ m login dialog" />)
 },
 ```
 
-Since Mdx is reactive, you can import the shared data at the top of the
+Since MDX is reactive, you can import the shared data at the top of the
 file, just beneath your frontmatter:
 
 ```
@@ -143,16 +142,8 @@ The content pages should include
 ## Navigation
 
 The site's navigation (on the left-hand sidebar of the site) is controlled
-by `src/nav-base.yml`.  If you add or remove a page from the site, you'll
+by `src/theme/nav.yml`.  If you add or remove a page from the site, you'll
 also want to add or remove it from the navigation configuration.
-
-Since the main documentation's navigation is combined with the CLI
-documentation's navigation to produce the overall navigation, you'll
-need to run the CLI update script (`cli/cli_import.js`) to combine
-the navigation.  (More on that below.)
-
-**Todo:** we should isolate the navigational elements into their own
-script that runs as part of gatsby's `onPreBuild` phase.
 
 ## CLI
 
@@ -184,36 +175,32 @@ adding a new major version to the site.
      `v6` or `v7`.  This corresponds to a directory containing a
      version of the CLI repository (using a submodule).  This will also
      be used as the output folder in the content.
-   * `version`: The full semantic version number (eg `6.0.0`).
-   * `title`: A long description of the version information.  This will
-     be used in the version picker,.
    * `branch`: The branch name for the version.  This will be used to
      fetch the latest version of the documentation from GitHub.
+   * `spec`: The registry spec for the version. This will be used
+     to fetch the latest version in that range from the registry.
+   * `resolved`: This should not be edited manually. This is a reference
+     to the last fetched version of the content for this release. If
+     a future fetch is done and this field matches what is returned
+     from the registry, then no updates will be made. To force an update
+     (which can be useful when making changes to the `bin/build.js` script)
+     it can be run with the argument `--force`.
 
-2. Fetch the latest content from the CLI repository  
-   Run `cli/cli_fetch.js` to download the submodules.  This will
-   initialize the submodules, fetch each one, and update them to
-   the latest branch commit on the remote.
-
-3. Import the CLI's content into the main repository
-   Run `cli/cli_import.js` to import the CLI's documentation from each
-   directory.  This will take the content in each submodule's
-   `docs/content` directory, perform any necessary translations (like
-   adding historical redirects) and putting it in this repository's
-   `content` directory.  In addition, it will take the `docs/nav.yml`
-   and include it in this repository's navigation.
+2. Fetch and import the latest content for each CLI release  
+   Run `npm run build -w cli` to download the latest version for each release
+   and import its content into the `content` directory. This will take the
+   content in each submodule's `docs/content` directory, perform any necessary
+   translations (like adding historical redirects) and putting it in this repository's
+   `content` directory.  In addition, it will take the `docs/nav.yml` and include it
+   in this repository's navigation.
 
 ## Reviewing changes
 
-The staging docs site (https://docs-staging.npmjs.com/) is published
-from a set of GitHub actions workflows.  Since it is a separate site
-(with a separate GitHub Pages instance), the staging site lives in a
-[separate GitHub repository](https://github.com/npm/docs-staging).
-As a result when a pull request is opened in _this_ repository, we
-send a repository dispatch event to the `docs-staging` repository.
-
-A GitHub Actions workflow run in that repository will then build the
-pull request and publish the staging site for review.
+When a pull request is opened or updated the
+[GitHub Actions workflow](https://github.com/npm/documentation/actions/workflows/publish.yml)
+will deploy a preview to the [`github-pages` environment](https://github.com/npm/documentation/deployments/activity_log?environment=github-pages).
+The URL will be reported to the pull request and the status can be checked by looking at the
+workflows for the [`pull_request_target` event](https://github.com/npm/documentation/actions/workflows/publish.yml?query=event%3Apull_request_target).
 
 ## Deploying changes
 
@@ -230,9 +217,7 @@ On step three, your changes will be published live!  🎉
 
 ## Theme
 
-Much of the documentation's theme is separate.
-
-The gatsby theme used here is "doctornpm" - a variation of
+The Gatsby theme used here is located in the [`theme/`](./theme) directory. It is a variation of
 [doctocat](https://github.com/primer/doctocat) with some theme changes
 for npm's design language and additional components to support multiple
 versions of the CLI documentation.

@@ -2,14 +2,13 @@
 title: developers
 section: 7
 description: Developer Guide
-redirect_from:
-  - /using-npm/developers
-  - /using-npm/developers.html
-  - /misc/developers
-  - /misc/developers.html
 github_repo: npm/cli
-github_branch: latest
-github_path: docs/content/using-npm/developers.md
+github_branch: release/v8
+github_path: docs/lib/content/using-npm/developers.md
+redirect_from:
+  - /cli-documentation/v8/misc/developers
+  - /cli-documentation/v8/using-npm/developers
+  - /cli/v8/misc/developers
 ---
 
 ### Description

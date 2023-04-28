@@ -3,8 +3,20 @@ title: npm-ls
 section: 1
 description: List installed packages
 github_repo: npm/cli
-github_branch: v6-docs
+github_branch: release/v6
 github_path: docs/content/commands/npm-ls.md
+redirect_from:
+  - /cli-documentation/v6/cli-commands/ls
+  - /cli-documentation/v6/cli-commands/npm-ls
+  - /cli-documentation/v6/commands/ls
+  - /cli-documentation/v6/commands/npm-ls
+  - /cli-documentation/v6/ls
+  - /cli-documentation/v6/npm-ls
+  - /cli/v6/cli-commands/ls
+  - /cli/v6/cli-commands/npm-ls
+  - /cli/v6/commands/ls
+  - /cli/v6/ls
+  - /cli/v6/npm-ls
 ---
 
 ### Synopsis
@@ -26,7 +38,7 @@ nested packages will *also* show the paths to the specified packages.
 For example, running `npm ls promzard` in npm's source tree will show:
 
 ```bash
-    npm@6.0.0 /path/to/npm
+    npm@6.14.18 /path/to/npm
     └─┬ init-package-json@0.0.4
       └── promzard@0.1.5
 ```

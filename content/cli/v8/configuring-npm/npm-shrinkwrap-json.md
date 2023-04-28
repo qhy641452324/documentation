@@ -2,12 +2,17 @@
 title: npm-shrinkwrap.json
 section: 5
 description: A publishable lockfile
-redirect_from:
-  - /configuring-npm/npm-shrinkwrap-json
-  - /configuring-npm/npm-shrinkwrap-json.html
 github_repo: npm/cli
-github_branch: latest
-github_path: docs/content/configuring-npm/npm-shrinkwrap-json.md
+github_branch: release/v8
+github_path: docs/lib/content/configuring-npm/npm-shrinkwrap-json.md
+redirect_from:
+  - /cli-documentation/v8/configuring-npm/npm-shrinkwrap-json
+  - /cli-documentation/v8/configuring-npm/npm-shrinkwrap.json
+  - /cli-documentation/v8/files/npm-shrinkwrap-json
+  - /cli-documentation/v8/files/npm-shrinkwrap.json
+  - /cli/v8/configuring-npm/npm-shrinkwrap.json
+  - /cli/v8/files/npm-shrinkwrap-json
+  - /cli/v8/files/npm-shrinkwrap.json
 ---
 
 ### Description

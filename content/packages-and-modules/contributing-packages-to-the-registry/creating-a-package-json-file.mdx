@@ -44,7 +44,8 @@ Your Name <email@example.com> (http://example.com)
 ```
 {
   "name": "my-awesome-package",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "author": "Your Name <email@example.com>"
 }
 ```
 
@@ -92,7 +93,7 @@ If you expect to create many `package.json` files, you can customize the questio
    }
    ```
 
-To learn more about creating advanced `npm init` customizations, see the [init-package-json][init-pkg-json] GitHub repository.
+To learn more about creating advanced `npm init` customizations, see the [init-package-json GitHub repository][init-pkg-json GitHub repository].
 
 ### Creating a default `package.json` file
 
@@ -155,11 +156,11 @@ Wrote to /home/monatheoctocat/my_package/package.json:
 You can set default config options for the init command. For example, to set the default author email, author name, and license, on the command line, run the following commands:
 
 ```
-> npm set init.author.email "example-user@example.com"
-> npm set init.author.name "example_user"
-> npm set init.license "MIT"
+> npm set init-author-email "example-user@example.com"
+> npm set init-author-name "example_user"
+> npm set init-license "MIT"
 ```
 
 [semver]: about-semantic-versioning
-[init-pkg-json]: https://github.com/npm/init-package-json
+[init-pkg-json Github repository]: https://github.com/npm/init-package-json
 [isc-license]: https://opensource.org/licenses/ISC

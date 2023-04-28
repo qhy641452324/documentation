@@ -2,16 +2,17 @@
 title: package.json
 section: 5
 description: Specifics of npm's package.json handling
-redirect_from:
-  - /configuring-npm/package-json
-  - /configuring-npm/package-json.html
-  - /configuring-npm/package.json
-  - /creating-a-packge-json-file
-  - /files/package.json
-  - /files/package.json.html
 github_repo: npm/cli
-github_branch: latest
-github_path: docs/content/configuring-npm/package-json.md
+github_branch: release/v8
+github_path: docs/lib/content/configuring-npm/package-json.md
+redirect_from:
+  - /cli-documentation/v8/configuring-npm/package-json
+  - /cli-documentation/v8/configuring-npm/package.json
+  - /cli-documentation/v8/files/package-json
+  - /cli-documentation/v8/files/package.json
+  - /cli/v8/configuring-npm/package.json
+  - /cli/v8/files/package-json
+  - /cli/v8/files/package.json
 ---
 
 ### Description
@@ -28,11 +29,9 @@ settings described in [`config`](/cli/v8/using-npm/config).
 If you plan to publish your package, the *most* important things in your
 package.json are the name and version fields as they will be required. The
 name and version together form an identifier that is assumed to be
-completely unique.  Changes to the package should come along with changes
-to the version. If you don't plan to publish your package, the name and
+completely unique. If you don't plan to publish your package, the name and
 version fields are optional.
-
-The name is what your thing is called.
+The name field contains your package name.
 
 Some rules:
 
@@ -62,12 +61,9 @@ A name can be optionally prefixed by a scope, e.g. `@myorg/mypackage`. See
 
 ### version
 
-If you plan to publish your package, the *most* important things in your
-package.json are the name and version fields as they will be required. The
-name and version together form an identifier that is assumed to be
-completely unique.  Changes to the package should come along with changes
-to the version. If you don't plan to publish your package, the name and
-version fields are optional.
+Changes to the package should come along with changes to the version.
+You can show developers how much they need to adjust on a new update by
+using [semantic versioning](../../about-semantic-versioning) 
 
 Version must be parseable by
 [node-semver](https://github.com/npm/node-semver), which is bundled with
@@ -134,7 +130,7 @@ IDs](https://spdx.org/licenses/).  Ideally you should pick one that is
 
 If your package is licensed under multiple common licenses, use an [SPDX
 license expression syntax version 2.0
-string](https://www.npmjs.com/package/spdx), like this:
+string](https://spdx.dev/specifications/), like this:
 
 ```json
 {
@@ -642,7 +638,7 @@ commit. If the commit-ish has the format `#semver:<semver>`, `<semver>` can
 be any valid semver range or exact version, and npm will look for any tags
 or refs matching that range in the remote repository, much as it would for
 a registry dependency. If neither `#<commit-ish>` or `#semver:<semver>` is
-specified, then `master` is used.
+specified, then the default branch is used.
 
 Examples:
 
@@ -839,14 +835,14 @@ if the `soy-milk` package is not installed on the host. This allows you to
 integrate and interact with a variety of host packages without requiring
 all of them to be installed.
 
-### bundledDependencies
+### bundleDependencies
 
 This defines an array of package names that will be bundled when publishing
 the package.
 
 In cases where you need to preserve npm packages locally or have them
 available through a single file download, you can bundle the packages in a
-tarball file by specifying the package names in the `bundledDependencies`
+tarball file by specifying the package names in the `bundleDependencies`
 array and executing `npm pack`.
 
 For example:
@@ -857,7 +853,7 @@ If we define a package.json like this:
 {
   "name": "awesome-web-framework",
   "version": "1.0.0",
-  "bundledDependencies": [
+  "bundleDependencies": [
     "renderized",
     "super-streams"
   ]
@@ -870,9 +866,9 @@ can be installed in a new project by executing `npm install
 awesome-web-framework-1.0.0.tgz`.  Note that the package names do not
 include any versions, as that information is specified in `dependencies`.
 
-If this is spelled `"bundleDependencies"`, then that is also honored.
+If this is spelled `"bundledDependencies"`, then that is also honored.
 
-Alternatively, `"bundledDependencies"` can be defined as a boolean value. A
+Alternatively, `"bundleDependencies"` can be defined as a boolean value. A
 value of `true` will bundle all dependencies, a value of `false` will bundle
 none.
 
@@ -883,7 +879,7 @@ be found or fails to install, then you may put it in the
 `optionalDependencies` object.  This is a map of package name to version or
 url, just like the `dependencies` object.  The difference is that build
 failures do not cause installation to fail.  Running `npm install
---no-optional` will prevent these dependencies from being installed.
+--omit=optional` will prevent these dependencies from being installed.
 
 It is still your program's responsibility to handle the lack of the
 dependency.  For example, something like this:

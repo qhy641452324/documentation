@@ -2,12 +2,13 @@
 title: install
 section: 5
 description: Download and install node and npm
-redirect_from:
-  - /configuring-npm/install
-  - /configuring-npm/install.html
 github_repo: npm/cli
-github_branch: latest
-github_path: docs/content/configuring-npm/install.md
+github_branch: release/v8
+github_path: docs/lib/content/configuring-npm/install.md
+redirect_from:
+  - /cli-documentation/v8/configuring-npm/install
+  - /cli-documentation/v8/files/install
+  - /cli/v8/files/install
 ---
 
 ### Description
